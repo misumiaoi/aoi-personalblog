@@ -15,12 +15,11 @@ const notes = (await getCollection("notes"))
 
   <div class="card-list">
     {notes.map((note) => (
-      <article class="article-card">
+      <a class="article-card" href={`/notes/${note.slug}`}>
         <p class="meta">{note.data.category} / {note.data.date.toLocaleDateString("en-GB")}</p>
         <h2>{note.data.title}</h2>
         <p>{note.data.description}</p>
-      </article>
+      </a>
     ))}
   </div>
 </BaseLayout>
-

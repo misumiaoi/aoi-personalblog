@@ -8,14 +8,25 @@ interface Props {
   category: string;
   tags?: string[];
   cover?: string;
+  backHref?: string;
+  backLabel?: string;
 }
 
-const { title, description, date, category, tags = [], cover } = Astro.props;
+const {
+  title,
+  description,
+  date,
+  category,
+  tags = [],
+  cover,
+  backHref = "/research",
+  backLabel = "Back to research",
+} = Astro.props;
 ---
 
 <BaseLayout title={title} description={description} image={cover}>
   <article class="article-shell">
-    <a class="back-link" href="/research">Back to research</a>
+    <a class="back-link" href={backHref}>{backLabel}</a>
     <header class="article-header">
       <p class="meta">{category} / {date.toLocaleDateString("en-GB")}</p>
       <h1>{title}</h1>

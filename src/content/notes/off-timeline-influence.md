@@ -5,7 +5,6 @@ cover: "/images/off-timeline-influence/cover.png"
 date: 2026-05-25
 category: "Social Systems"
 tags: ["Public Opinion", "Platforms", "Private Networks"]
-featured: true
 draft: false
 ---
 
@@ -22,3 +21,4 @@ Many opinions are not formed on the homepage. They are formed in group chats, pr
 One way to judge a person's self-presentation is to look at how evaluation circulates around them. Low activity is not the issue. A person can be quiet and still be honest. The issue is when someone quietly shapes other people's judgments offstage, while publicly describing themselves as a harmless bystander.
 
 That is not innocence. It is a performance of innocence.
+
