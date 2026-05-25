@@ -1,0 +1,40 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { tweets } from "@/data/tweets";
+---
+
+<BaseLayout
+  title="Tweets"
+  description="Collected tweets and public fragments from Aoi and friends."
+>
+  <section class="page-intro">
+    <h1>Tweets</h1>
+    <p>
+      A collection of public fragments from Aoi and friends: short observations,
+      arguments, links, and conversations worth keeping near the longer notes.
+    </p>
+  </section>
+
+  {tweets.length > 0 ? (
+    <section class="tweet-grid" aria-label="Collected tweets">
+      {tweets.map((tweet) => (
+        <article class="tweet-entry">
+          <div class="tweet-entry-header">
+            <p class="meta">{tweet.author}{tweet.date ? ` / ${tweet.date}` : ""}</p>
+            {tweet.note && <p>{tweet.note}</p>}
+          </div>
+          <blockquote class="twitter-tweet" data-theme="light">
+            <a href={tweet.url}>{tweet.url}</a>
+          </blockquote>
+        </article>
+      ))}
+    </section>
+  ) : (
+    <section class="empty-panel">
+      <p>Collected tweets will appear here soon.</p>
+    </section>
+  )}
+
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</BaseLayout>
+

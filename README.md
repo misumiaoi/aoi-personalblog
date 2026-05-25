@@ -52,7 +52,8 @@ new commits to GitHub can trigger deployments automatically.
 |   |   |-- notes/
 |   |   `-- research/
 |   |-- data/
-|   |   `-- site.ts
+|   |   |-- site.ts
+|   |   `-- tweets.ts
 |   |-- layouts/
 |   |   |-- ArticleLayout.astro
 |   |   `-- BaseLayout.astro
@@ -142,6 +143,9 @@ Edit `src/data/site.ts` when you want to change:
 - topic list
 - social or external links
 
+Edit `src/data/tweets.ts` when you want to add embedded tweets to `/tweets`.
+Each entry should include the public tweet URL and author label.
+
 ### `src/layouts`
 
 Reusable page frames.
@@ -161,6 +165,7 @@ Current routes:
 - `/research` research index
 - `/research/[slug]` individual research articles
 - `/notes` notes index
+- `/tweets` embedded tweet collection
 - `/topics` topic overview
 - `/about` about page
 

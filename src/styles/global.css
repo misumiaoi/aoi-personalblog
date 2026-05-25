@@ -134,7 +134,9 @@ nav a:hover {
 .article-card,
 .feature-card,
 .topic-card,
-.topic-panel {
+.topic-panel,
+.tweet-entry,
+.empty-panel {
   border: 1px solid var(--line);
   background: var(--white);
   border-radius: 8px;
@@ -174,6 +176,39 @@ nav a:hover {
 .topic-panel li {
   padding-bottom: 10px;
   border-bottom: 1px solid var(--line);
+}
+
+.tweet-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  padding-bottom: 56px;
+}
+
+.tweet-entry {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  overflow: hidden;
+}
+
+.tweet-entry-header {
+  display: grid;
+  gap: 8px;
+}
+
+.tweet-entry-header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.empty-panel {
+  margin-bottom: 56px;
+}
+
+.empty-panel p {
+  margin: 0;
+  color: var(--muted);
 }
 
 .publication-section,
@@ -319,6 +354,7 @@ nav a:hover {
   .section-grid,
   .feature-grid,
   .topic-grid,
+  .tweet-grid,
   .publication-row {
     grid-template-columns: 1fr;
   }

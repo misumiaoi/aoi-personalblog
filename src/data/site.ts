@@ -7,6 +7,7 @@ export const site = {
   nav: [
     { label: "Research", href: "/research" },
     { label: "Notes", href: "/notes" },
+    { label: "Tweets", href: "/tweets" },
     { label: "Topics", href: "/topics" },
     { label: "About", href: "/about" },
   ],
