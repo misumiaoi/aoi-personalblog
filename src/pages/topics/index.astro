@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site } from "@/data/site";
+---
+
+<BaseLayout title="Topics" description="Topic map for Kitaku Research.">
+  <section class="page-intro">
+    <h1>Topics</h1>
+    <p>The main shelves for future writing.</p>
+  </section>
+
+  <div class="topic-grid">
+    {site.topics.map((topic) => (
+      <section class="topic-card">
+        <h2>{topic}</h2>
+        <p>Articles and notes will be grouped here as the archive grows.</p>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+

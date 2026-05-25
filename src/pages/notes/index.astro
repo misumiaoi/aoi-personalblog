@@ -1,0 +1,26 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const notes = (await getCollection("notes"))
+  .filter((note) => !note.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Notes" description="Short notes and working records.">
+  <section class="page-intro">
+    <h1>Notes</h1>
+    <p>Shorter records, working thoughts, and lightweight public logs.</p>
+  </section>
+
+  <div class="card-list">
+    {notes.map((note) => (
+      <article class="article-card">
+        <p class="meta">{note.data.category} / {note.data.date.toLocaleDateString("en-GB")}</p>
+        <h2>{note.data.title}</h2>
+        <p>{note.data.description}</p>
+      </article>
+    ))}
+  </div>
+</BaseLayout>
+

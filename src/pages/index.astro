@@ -1,0 +1,61 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site } from "@/data/site";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("research"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const featured = posts.filter((post) => post.data.featured).slice(0, 2);
+const latest = posts.slice(0, 5);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <p class="eyebrow">Research, notes, and public systems</p>
+    <h1>Structured writing for language, operations, and small independent infrastructure.</h1>
+    <p>
+      Kitaku Research collects essays, technical notes, teaching analysis, and
+      creator operation records in one calm public index.
+    </p>
+  </section>
+
+  <section class="section-grid">
+    <div>
+      <h2>Featured</h2>
+      <div class="card-list">
+        {featured.map((post) => (
+          <a class="article-card" href={`/research/${post.data.slug}`}>
+            <p class="meta">{post.data.category} / {post.data.date.toLocaleDateString("en-GB")}</p>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+    <aside class="topic-panel">
+      <h2>Topics</h2>
+      <ul>
+        {site.topics.map((topic) => <li>{topic}</li>)}
+      </ul>
+    </aside>
+  </section>
+
+  <section class="publication-section">
+    <div class="section-heading">
+      <h2>Latest publications</h2>
+      <a href="/research">View all</a>
+    </div>
+    <div class="publication-table">
+      {latest.map((post) => (
+        <a class="publication-row" href={`/research/${post.data.slug}`}>
+          <time>{post.data.date.toLocaleDateString("en-GB")}</time>
+          <span>{post.data.category}</span>
+          <strong>{post.data.title}</strong>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+

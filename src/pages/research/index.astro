@@ -1,0 +1,49 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("research"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const featured = posts.filter((post) => post.data.featured);
+---
+
+<BaseLayout title="Research" description="Research essays and structured public writing.">
+  <section class="page-intro">
+    <h1>Research</h1>
+    <p>
+      Essays and documentation on language learning, teaching systems, creator
+      operations, finance workflows, and small-scale infrastructure.
+    </p>
+  </section>
+
+  {featured.length > 0 && (
+    <section class="feature-grid">
+      {featured.map((post) => (
+        <a class="feature-card" href={`/research/${post.data.slug}`}>
+          <p class="meta">{post.data.category}</p>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.description}</p>
+        </a>
+      ))}
+    </section>
+  )}
+
+  <section class="publication-section">
+    <div class="section-heading">
+      <h2>Publications</h2>
+      <span>{posts.length} items</span>
+    </div>
+    <div class="publication-table">
+      {posts.map((post) => (
+        <a class="publication-row" href={`/research/${post.data.slug}`}>
+          <time>{post.data.date.toLocaleDateString("en-GB")}</time>
+          <span>{post.data.category}</span>
+          <strong>{post.data.title}</strong>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+

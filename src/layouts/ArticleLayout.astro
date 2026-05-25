@@ -1,0 +1,33 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  category: string;
+  tags?: string[];
+}
+
+const { title, description, date, category, tags = [] } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="article-shell">
+    <a class="back-link" href="/research">Back to research</a>
+    <header class="article-header">
+      <p class="meta">{category} / {date.toLocaleDateString("en-GB")}</p>
+      <h1>{title}</h1>
+      <p class="lede">{description}</p>
+      {tags.length > 0 && (
+        <div class="tag-row">
+          {tags.map((tag) => <span>{tag}</span>)}
+        </div>
+      )}
+    </header>
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
