@@ -7,12 +7,13 @@ interface Props {
   date: Date;
   category: string;
   tags?: string[];
+  cover?: string;
 }
 
-const { title, description, date, category, tags = [] } = Astro.props;
+const { title, description, date, category, tags = [], cover } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} image={cover}>
   <article class="article-shell">
     <a class="back-link" href="/research">Back to research</a>
     <header class="article-header">
@@ -25,9 +26,9 @@ const { title, description, date, category, tags = [] } = Astro.props;
         </div>
       )}
     </header>
+    {cover && <img class="article-cover" src={cover} alt="" loading="eager" />}
     <div class="prose">
       <slot />
     </div>
   </article>
 </BaseLayout>
-

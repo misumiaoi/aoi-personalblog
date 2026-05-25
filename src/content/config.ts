@@ -5,6 +5,7 @@ const research = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    cover: z.string().optional(),
     date: z.date(),
     updated: z.date().optional(),
     category: z.string(),
@@ -19,6 +20,7 @@ const notes = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    cover: z.string().optional(),
     date: z.date(),
     category: z.string(),
     tags: z.array(z.string()).default([]),
