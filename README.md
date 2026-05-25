@@ -1,6 +1,8 @@
 # Kitaku Research
 
-This repository is the source for a research-style blog planned for `kitaku.org`.
+Source repository: `misumiaoi/aoi-personalblog`.
+
+This repository is the source for Aoi's research-style blog planned for `kitaku.org`.
 
 The site is designed for:
 
@@ -227,4 +229,3 @@ NOTION_DATABASE_ID=
 ```
 
 Do not commit real tokens to this repository.
-
