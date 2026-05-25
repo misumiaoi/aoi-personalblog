@@ -1,7 +1,6 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://kitaku.org",
+  site: "https://aoi-personalblog.pages.dev",
   output: "static",
 });
-

@@ -1,7 +1,7 @@
 export const site = {
   name: "Kitaku Research",
-  domain: "kitaku.org",
-  url: "https://kitaku.org",
+  domain: "aoi-personalblog.pages.dev",
+  url: "https://aoi-personalblog.pages.dev",
   description:
     "Research notes, essays, language learning analysis, and creator operations documentation by Aoi.",
   nav: [
@@ -19,4 +19,3 @@ export const site = {
     "Personal Systems",
   ],
 };
-
