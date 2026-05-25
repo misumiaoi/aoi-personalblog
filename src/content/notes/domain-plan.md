@@ -1,6 +1,5 @@
 ---
 title: "Domain Plan"
-slug: "domain-plan"
 description: "Initial domain roles for the site."
 date: 2026-05-25
 category: "Infrastructure"
@@ -14,4 +13,3 @@ Initial domain roles:
 - `archivedaoi.uk` as a future archive or redirect
 
 The first deployment should focus on `kitaku.org`.
-

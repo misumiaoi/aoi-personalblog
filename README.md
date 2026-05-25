@@ -121,7 +121,6 @@ Each article uses frontmatter:
 ```yaml
 ---
 title: "Article title"
-slug: "article-slug"
 description: "Short summary for listings and SEO."
 date: 2026-05-25
 category: "Infrastructure"
