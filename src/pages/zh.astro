@@ -1,0 +1,59 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const researchPosts = (await getCollection("research"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const notes = (await getCollection("notes"))
+  .filter((note) => !note.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout
+  lang="zh-CN"
+  title="中文"
+  description="归宅研究部的中文入口，整理中文页面内容、研究文章与短札。"
+>
+  <section class="page-intro zh-intro">
+    <p class="eyebrow">中文入口</p>
+    <h1>归宅研究部</h1>
+    <p>
+      这里集中显示中文读者更容易进入的页面内容、研究文章与短札。当前站点仍以英文结构为主，
+      后续新增中文稿件时会优先收纳到这个入口。
+    </p>
+  </section>
+
+  <section class="publication-section">
+    <div class="section-heading">
+      <h2>研究文章</h2>
+      <span>{researchPosts.length} items</span>
+    </div>
+    <div class="publication-table">
+      {researchPosts.map((post) => (
+        <a class="publication-row" href={`/research/${post.slug}`}>
+          <time>{post.data.date.toLocaleDateString("zh-CN")}</time>
+          <span>{post.data.category}</span>
+          <strong>{post.data.title}</strong>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="publication-section">
+    <div class="section-heading">
+      <h2>短札与记录</h2>
+      <span>{notes.length} items</span>
+    </div>
+    <div class="card-list">
+      {notes.map((note) => (
+        <a class="article-card" href={`/notes/${note.slug}`}>
+          <p class="meta">{note.data.category} / {note.data.date.toLocaleDateString("zh-CN")}</p>
+          <h2>{note.data.title}</h2>
+          <p>{note.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

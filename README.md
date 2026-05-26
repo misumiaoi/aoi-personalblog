@@ -165,9 +165,11 @@ Current routes:
 - `/research` research index
 - `/research/[slug]` individual research articles
 - `/notes` notes index
+- `/zh` Chinese entry page
 - `/tweets` embedded tweet collection
 - `/topics` topic overview
 - `/about` about page
+- `/unavailable` regional availability notice
 
 ### `src/styles`
 
@@ -213,6 +215,20 @@ Build output directory: dist
 Root directory: /
 Node.js version: 22 or newer
 ```
+
+### Mainland China access notice
+
+The site uses a Cloudflare Pages middleware file at `functions/_middleware.js`.
+When Cloudflare reports `request.cf.country === "CN"`, normal page requests are
+redirected to `/unavailable`, which shows:
+
+```text
+为符合当地法律法规，归宅研究部的内容在你所在的国家和地区不可用
+```
+
+The route configuration is copied from `public/_routes.json` into `dist` during
+build. It invokes the middleware on page requests while excluding static assets
+such as `/_astro/*`, `/images/*`, `/favicon*`, and `/robots.txt`.
 
 Recommended domain setup:
 
