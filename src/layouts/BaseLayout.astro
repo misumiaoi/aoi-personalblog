@@ -7,6 +7,7 @@ interface Props {
   description?: string;
   image?: string;
   lang?: string;
+  hideNav?: boolean;
 }
 
 const {
@@ -14,6 +15,7 @@ const {
   description = site.description,
   image,
   lang = "en",
+  hideNav = false,
 } = Astro.props;
 
 const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
@@ -71,14 +73,16 @@ const isActive = (href: string) => {
       <a class="brand" href="/" aria-label={`${site.name} home`}>
         <img src="/images/kitaku-logo.svg" alt="" width="188" height="52" />
       </a>
-      <nav aria-label="Main navigation">
-        {navItems.map((item) => (
-          <a href={item.href} class:list={{ active: isActive(item.href) }} aria-current={isActive(item.href) ? "page" : undefined}>
-            {item.label}
-          </a>
-        ))}
-        <a class="language-switch" href={languageSwitch.href}>{languageSwitch.label}</a>
-      </nav>
+      {!hideNav && (
+        <nav aria-label="Main navigation">
+          {navItems.map((item) => (
+            <a href={item.href} class:list={{ active: isActive(item.href) }} aria-current={isActive(item.href) ? "page" : undefined}>
+              {item.label}
+            </a>
+          ))}
+          <a class="language-switch" href={languageSwitch.href}>{languageSwitch.label}</a>
+        </nav>
+      )}
     </header>
     <main>
       <slot />
