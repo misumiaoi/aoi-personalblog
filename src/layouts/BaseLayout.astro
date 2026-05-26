@@ -20,6 +20,27 @@ const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
 const canonicalUrl = new URL(Astro.url.pathname, site.url).toString();
 const imageUrl = image ? new URL(image, site.url).toString() : undefined;
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isChinesePage = lang.toLowerCase().startsWith("zh") || pathname === "/zh";
+const navItems = site.nav.map((item) => {
+  if (!isChinesePage) return item;
+
+  const zhLabels: Record<string, string> = {
+    Research: "研究",
+    Notes: "笔记",
+    Tweets: "推文",
+    Topics: "主题",
+    About: "关于",
+  };
+
+  return {
+    ...item,
+    label: zhLabels[item.label] ?? item.label,
+  };
+});
+
+const languageSwitch = isChinesePage
+  ? { label: "EN", href: "/" }
+  : { label: "中文", href: "/zh" };
 
 const isActive = (href: string) => {
   const normalizedHref = href.replace(/\/$/, "") || "/";
@@ -51,11 +72,12 @@ const isActive = (href: string) => {
         <img src="/images/kitaku-logo.svg" alt="" width="188" height="52" />
       </a>
       <nav aria-label="Main navigation">
-        {site.nav.map((item) => (
+        {navItems.map((item) => (
           <a href={item.href} class:list={{ active: isActive(item.href) }} aria-current={isActive(item.href) ? "page" : undefined}>
             {item.label}
           </a>
         ))}
+        <a class="language-switch" href={languageSwitch.href}>{languageSwitch.label}</a>
       </nav>
     </header>
     <main>

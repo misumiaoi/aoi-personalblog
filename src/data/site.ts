@@ -9,7 +9,6 @@ export const site = {
     { label: "Notes", href: "/notes" },
     { label: "Tweets", href: "/tweets" },
     { label: "Topics", href: "/topics" },
-    { label: "中文", href: "/zh" },
     { label: "About", href: "/about" },
   ],
   topics: [
