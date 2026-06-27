@@ -69,21 +69,23 @@ const isActive = (href: string) => {
     <title>{pageTitle}</title>
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="/" aria-label={`${site.name} home`}>
-        <img src="/images/kitaku-logo.svg" alt="" width="188" height="52" />
-      </a>
-      {!hideNav && (
-        <nav aria-label="Main navigation">
-          {navItems.map((item) => (
-            <a href={item.href} class:list={{ active: isActive(item.href) }} aria-current={isActive(item.href) ? "page" : undefined}>
-              {item.label}
-            </a>
-          ))}
-          <a class="language-switch" href={languageSwitch.href}>{languageSwitch.label}</a>
-        </nav>
-      )}
-    </header>
+    <div class="header-bar">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label={`${site.name} home`}>
+          <img src="/images/kitaku-logo.svg" alt="" width="188" height="52" />
+        </a>
+        {!hideNav && (
+          <nav aria-label="Main navigation">
+            {navItems.map((item) => (
+              <a href={item.href} class:list={{ active: isActive(item.href) }} aria-current={isActive(item.href) ? "page" : undefined}>
+                {item.label}
+              </a>
+            ))}
+            <a class="language-switch" href={languageSwitch.href}>{languageSwitch.label}</a>
+          </nav>
+        )}
+      </header>
+    </div>
     <main>
       <slot />
     </main>
